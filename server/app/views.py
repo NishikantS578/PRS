@@ -17,44 +17,24 @@ def index(request):
             'Accept-Language': 'en-US, en;q=0.5'
            }
     search_query = 'jacket'.replace(' ', '+')
-    base_url = 'https://www.amazon.in/s?k={value}&page={page_no}'.format(value="iphone15",page_no="1")
-
-    # + '&page={0}'.format(0) || https://www.amazon.in/s?k=iphone15&page=2
+    base_url = 'https://www.amazon.in/s?k={0}&page={page_no}'.format(search_query, page_no="1")
 
     response = requests.get(base_url, headers=headers)
     soup = BeautifulSoup(response.content, 'html.parser')
-    # product_names = soup.find_all('span',class_='a-size-medium a-color-base a-text-normal');
-    # product_prices = soup.find_all('span',class_="a-offscreen");
-
     product_details = []
 
-    temp = soup.find_all("div",class_="a-section a-spacing-small a-spacing-top-small")
-    print(len(temp))
-    for i in range(len(temp)):
-        if temp[i].parent["class"][0] == "puisg-col-inner":
-            product_name = temp[i].find('span', class_='a-size-medium a-color-base a-text-normal')
-            product_price = temp[i].css.select_one(".a-price > .a-offscreen")
+    temp = soup.find_all("div", attrs={"data-uuid": True,
+                                       "class": "sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-20",
+                                       "data-asin": True,
+                                       "data-component-type": True,
+                                       "data-index": True})
+    for i in temp:
+        product_details.append({
+            "img": i.find("img", attrs={"src": True})["src"],
+            "title": i.find("span", attrs={"class": "a-size-base-plus a-color-base"}).text.strip() if i.find("span", attrs={"class": "a-size-base-plus a-color-base"}) != None else "",
+            "price": i.find("span", attrs={"class": "a-offscreen"}).text.strip(),
+            "rating": i.find("span", attrs={"class": "a-icon-alt"}).text.strip() if i.find("span", attrs={"class": "a-icon-alt"}) != None else "",
+            "desc": i.find("span", attrs={"class": "a-size-base-plus a-color-base a-text-normal"}).text.strip()
+            })
+    return HttpResponse(json.dumps(product_details))
 
-            new_product_detail = {"product_name": product_name.get_text(),"product_price": product_price.get_text()}
-            product_details.append(new_product_detail.copy())
-
-
-
-    # print(product_prices, len(product_prices), len(product_names)) ||  + " -> " + product_prices[i].get_text()
-
-    print(("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"))
-    # print(len(product_names))
-    if product_details:
-        for i in range(len(product_details)):
-            print(product_details[i])
-
-        # result[i] = result[i].attrs['href']
-    # print(result[0])
-    json_data = json.dumps(product_details)
-    print(json_data)
-
-    with open("text.json", "w") as file:
-        file.write(json_data)
-
-
-    return HttpResponse(product_details)

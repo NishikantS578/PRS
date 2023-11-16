@@ -1,15 +1,14 @@
 import React from "react";
 import data from "../data.js";
 
-console.log(data[0].img);
-export default function ProductCard(){
+export default function ProductCard(props){
     return (
         <div className="product-card">
-            <img src={data[0].img}/>
-            <span> ${data[0].price}</span>
-            <span className="rating"> {data[0].rating}</span>
-            <h1> {data[0].name}</h1>
-            <p>{data[0].desc}</p>
+            <img src={props.src}/>
+            <span> {props.price}</span>
+            <span className="rating"> {props.rating}</span>
+            <h1> {props.title}</h1>
+            <p>{props.desc}</p>
         </div>
     );
 }
