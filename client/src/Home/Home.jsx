@@ -7,7 +7,7 @@ function Home(){
     let ProductElements = []
     const [ProductList, setProductList] = React.useState([]);
     React.useEffect(() =>{
-        fetch("http://192.168.123.245:8000")
+        fetch("http://192.168.0.0:8000")
         .then((res) => res.json())
         .then((data) => {
             setProductList(data)
