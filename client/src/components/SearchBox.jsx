@@ -1,9 +1,9 @@
 import React from "react";
 import magnifyingGlass from "../assets/magnifying-glass.svg"
 
-const SearchBox = () => {
+function SearchBox(props){
   return (
-    <form className="searchbox">
+    <form className="searchbox" onChange={props.handleClick}>
       <input
           id="search-input"
           className="searchBar"
