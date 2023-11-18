@@ -29,6 +29,7 @@ export default function Home(){
     ProductList.forEach((ProductData) => {
         ProductElements.push(<ProductCard 
             src={ProductData.img}
+            href={ProductData.ref}
             price={ProductData.price}
             rating={ProductData.rating}
             title={ProductData.title}

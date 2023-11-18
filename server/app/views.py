@@ -38,7 +38,8 @@ def index(request):
                 "title": i.find("span", attrs={"class": "a-size-base-plus a-color-base"}).text.strip() if i.find("span", attrs={"class": "a-size-base-plus a-color-base"}) != None else "",
                 "price": i.find("span", attrs={"class": "a-offscreen"}).text.strip() if i.find("span", attrs={"class": "a-offscreen"}) else "",
                 "rating": i.find("span", attrs={"class": "a-icon-alt"}).text.strip() if i.find("span", attrs={"class": "a-icon-alt"}) != None else "",
-                "desc": i.find("span", attrs={"class": "a-size-base-plus a-color-base a-text-normal"}).text.strip()
+                "desc": i.find("span", attrs={"class": "a-size-base-plus a-color-base a-text-normal"}).text.strip(),
+                "ref" : "https://www.amazon.in/" + i.find("a", attrs={"class": "a-link-normal s-no-outline"})["href"]
                 })
         return HttpResponse(json.dumps(product_details))
     return HttpResponse("Not Authorized")
