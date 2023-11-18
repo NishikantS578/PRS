@@ -42,4 +42,3 @@ def index(request):
                 })
         return HttpResponse(json.dumps(product_details))
     return HttpResponse("Not Authorized")
-
