@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+a {
+    text-decoration: none;
+    color: #31708e;
+    font-weight: bold;
+    font-size: 1rem;
+}
+body {
+    background-color: #f7f9fb;
+}
+
+.navbar {
+    padding: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px,
+    rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+.icon {
+    height: 50px;
+    aspect-ratio: 1/1;
+    overflow: clip;
+    border-radius: 50%;
+    border: 1px solid black;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-items {
+    display: flex;
+    gap: 20px;
+}
+
+.searchbox {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.125rem;
+    margin: 1em 0;
+    background: #8fc1e3;
+    padding: 5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.searchBar {
+    font-size: inherit;
+    width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 0 10px;
+    border-radius: 100px;
+}
+
+.magnifying-glass{
+    position: absolute;
+    right: 20px;
+}
+
+.title-line {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 0.5em;
+    color: #5085a5;
+    padding: 0 3rem;
+}
+
+.product-card{
+}
+
+.main-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-list
+{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-card{
+    width: 200px;
+    aspect-ratio: 4 / 6;
+    display: grid;
+    grid-template-areas: 
+    " . img img . "
+    " . price rating . "
+    " . title title . "
+    " . desc desc . ";
+    grid-template-rows: 150px 1em 1.5em 100px; 
+    grid-template-columns: 1em 1fr 3fr 1em; 
+    align-items: center;
+    background: white;
+    border-radius: 10px;
+    overflow: clip;
+    box-shadow: 0 2px 8px -1px grey;
+}
+
+.product-card > img{
+    max-height: 150px;
+    max-width: 150px;
+    justify-self: center;
+    grid-area: img;
+    box-shadow: 0 1px 2px -1px grey;
+}
+
+.product-card > span{
+    font-size: 0.75rem;
+}
+
+.price{
+    grid-area: price;
+}
+
+.rating{
+    justify-self: end;
+    grid-area: rating;
+}
+
+.product-card > h1{
+    grid-area: title;
+    text-align: center;
+    justify-self: center;
+    font-size: 1rem;
+}
+.product-card > p{
+    grid-area: desc;
+    text-align: center;
+    font-size: 0.8em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
