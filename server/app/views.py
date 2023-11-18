@@ -25,21 +25,22 @@ def index(request):
 
         response = requests.get(base_url, headers=headers)
         soup = BeautifulSoup(response.content, 'html.parser')
-        product_details = []
 
+        product_details = []
         temp = soup.find_all("div", attrs={"data-uuid": True,
-                                           "class": "sg-col-4-of-24 sg-col-4-of-12 s-result-item s-asin sg-col-4-of-16 sg-col s-widget-spacing-small sg-col-4-of-20",
                                            "data-asin": True,
                                            "data-component-type": True,
                                            "data-index": True})
         for i in temp:
+            if(i["data-asin"] == ""): continue
+
             product_details.append({
-                "img": i.find("img", attrs={"src": True})["src"],
+                "img": i.find("img", attrs={"src": True})["src"] if i.find("img", attrs={"src": True}) != None else "",
                 "title": i.find("span", attrs={"class": "a-size-base-plus a-color-base"}).text.strip() if i.find("span", attrs={"class": "a-size-base-plus a-color-base"}) != None else "",
                 "price": i.find("span", attrs={"class": "a-offscreen"}).text.strip() if i.find("span", attrs={"class": "a-offscreen"}) else "",
                 "rating": i.find("span", attrs={"class": "a-icon-alt"}).text.strip() if i.find("span", attrs={"class": "a-icon-alt"}) != None else "",
-                "desc": i.find("span", attrs={"class": "a-size-base-plus a-color-base a-text-normal"}).text.strip(),
-                "ref" : "https://www.amazon.in/" + i.find("a", attrs={"class": "a-link-normal s-no-outline"})["href"]
+                "desc": i.find_all("h2")[-1].find("span").text.strip() if i.find_all("h2")[-1].find("span") != None else "",
+                "ref" : "https://www.amazon.in/" + i.find("a", attrs={"class": "a-link-normal s-no-outline"})["href"] if i.find("a", attrs={"class": "a-link-normal s-no-outline"}) != None else ""
                 })
         return HttpResponse(json.dumps(product_details))
     return HttpResponse("Not Authorized")
