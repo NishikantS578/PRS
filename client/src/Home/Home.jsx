@@ -3,22 +3,27 @@ import SearchBox from "../components/SearchBox";
 import ProductCard from "../components/ProductCard";
 
 
-function Home(){
+export default function Home(){
 
     let ProductElements = []
     const [ProductList, setProductList] = React.useState([]);
+    const [TimeOut, setTimeOut] = React.useState(() => {});
+
     function HandleSearch(e)
     {
-        let data = {"searchKey": e.target.value}
-        fetch(import.meta.env.VITE_BACKEND_URL, {
-            method: "POST",
-            body: JSON.stringify(data)
-            }
-        )
-        .then((res) => res.json())
-        .then((data) => {
-            setProductList(data)
-        })
+        if(TimeOut) clearTimeout(TimeOut);
+        setTimeOut (setTimeout ( () => {
+            console.log("sending request");
+            let data = {"searchKey": e.target.value}
+            fetch(import.meta.env.VITE_BACKEND_URL, {
+                method: "POST",
+                body: JSON.stringify(data)
+                }
+            )
+            .then((res) => res.json())
+            .then((data) => {
+                setProductList(data)
+            }) }, 500) );
     }
 
     ProductList.forEach((ProductData) => {
@@ -39,5 +44,3 @@ function Home(){
       </div>
   );
 };
-
-export default Home;

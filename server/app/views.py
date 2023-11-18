@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
@@ -22,7 +21,6 @@ def index(request):
 
         data=json.loads(request.body.decode())
         search_query = data["searchKey"].replace(' ', '+')
-        #search_query = 'jacket'.replace(' ', '+')
         base_url = 'https://www.amazon.in/s?k={0}&page={page_no}'.format(search_query, page_no="1")
 
         response = requests.get(base_url, headers=headers)
