@@ -1,0 +1,21 @@
+{
+    "name": "PRS",
+    "short_name": "PRS",
+    "start_url": "https://amazing-smakager-628130.netlify.app",
+    "icons": [
+        {
+            "src": "https://amazing-smakager-628130.netlify.app/assets/icon-762c5088.svg",
+            "sizes": "144x144",
+            "purpose": "maskable any"
+        },
+        {
+            "src": "https://amazing-smakager-628130.netlify.app/assets/icon-762c5088.svg",
+            "sizes": "144x144",
+            "purpose": "any"
+        }
+    ],
+    "theme_color": "#000000",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait"
+}
