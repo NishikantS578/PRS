@@ -1,4 +1,5 @@
 import React from 'react'
+import menu from "../assets/menu.png"
 
 const Nav = () => {
   return (
@@ -9,6 +10,9 @@ const Nav = () => {
           <a href="/">Home</a>
           <a href="#">About</a>
           <a href="#">Contact</a>
+        </div>
+        <div className="nav-items-2">
+          <img src={menu} alt="" />
         </div>
       </div>
     </div>
