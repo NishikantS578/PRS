@@ -8,6 +8,6 @@
 ## Backend
 
 The process should be followed from inside backend directory.
-- [Create Python Virtual environment](https://github.com/NishikantS578/PRS/edit/unstable/README.md#creating-python-virtual-environment).
+- [Create Python Virtual environment](https://github.com/NishikantS578/PRS/tree/unstable#creating-python-virtual-environment).
   
 ### Creating Python virtual environment
