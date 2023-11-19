@@ -43,6 +43,6 @@ Inside Backend Directory.
 
 1. ### Run Server
     ```
-      pythonx manage.py runserver <YOUR PRIVATE IP>
+      pythonx manage.py runserver <YOUR PRIVATE IP>:8000
     ```
     >replace x above by your python version
