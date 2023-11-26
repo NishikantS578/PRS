@@ -51,7 +51,7 @@ Inside Backend Directory.
 
 1. Install packages
     ```
-      pip install requirements.txt
+      python -m pip install -r requirements.txt
     ```
 
 1. Create env variables

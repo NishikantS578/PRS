@@ -44,3 +44,24 @@ def index(request):
                 })
         return HttpResponse(json.dumps(product_details))
     return HttpResponse("Not Authorized")
+
+# @csrf_exempt
+# def login(request):
+#     if request.method == "POST" :
+#         print("hello world")
+#         name = request.POST.get('email')
+#         print(name)
+#
+
+
+#
+# from pymongo import mongo_client
+#
+# def connect_to_db():
+#     DB = mongo_client.MongoClient(
+#         "mongodb+srv://zaidkh:LOYP1dhh33qSKgvz@prs.wshjv0j.mongodb.net/?retryWrites=true&w=majority")
+#     return DB
+#
+# def login(request):
+#     if request.method == "POST" :
+#         print(request.data)
